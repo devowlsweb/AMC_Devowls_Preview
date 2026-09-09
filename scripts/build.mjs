@@ -1,0 +1,30 @@
+import {mkdirSync,writeFileSync,copyFileSync,cpSync} from 'node:fs';
+import {createRequire} from 'node:module';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+import {resolve,dirname} from 'node:path';
+const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
+process.chdir(root);
+const require=createRequire(import.meta.url);
+const lucide=require('lucide');
+const aliases={box:'Package',flask:'FlaskConical',layers:'Layers',users:'Users',search:'Search',plus:'Plus',arrow:'ArrowRight',back:'ArrowLeft',chevron:'ChevronRight',check:'Check',clock:'Clock',edit:'Pencil',trash:'Trash2',close:'X',reset:'RotateCcw',shield:'ShieldCheck',info:'Info',save:'Save'};
+const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
+// Official Lucide icon nodes are serialized unchanged. No hand-drawn paths.
+const icons=Object.fromEntries(Object.entries(aliases).map(([alias,name])=>{
+  if(!Array.isArray(lucide[name]))throw new Error('Missing Lucide icon: '+name);
+  const children=lucide[name].map(([tag,attrs])=>'<'+tag+' '+Object.entries(attrs).map(([k,v])=>k+'="'+escape(v)+'"').join(' ')+'></'+tag+'>').join('');
+  return [alias,'<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+children+'</svg>'];
+}));
+mkdirSync('assets',{recursive:true});
+writeFileSync('src/icons.js','// Generated from lucide. ISC license: assets/LUCIDE-LICENSE.txt\nconst icons = '+JSON.stringify(icons)+';\nexport const icon = name => icons[name] || icons.box;\n');
+copyFileSync('node_modules/lucide/LICENSE','assets/LUCIDE-LICENSE.txt');
+copyFileSync('node_modules/@fontsource-variable/plus-jakarta-sans/files/plus-jakarta-sans-latin-wght-normal.woff2','assets/jakarta-latin.woff2');
+copyFileSync('node_modules/@fontsource-variable/plus-jakarta-sans/LICENSE','assets/FONT-LICENSE.txt');
+const result=spawnSync(process.execPath,['node_modules/@tailwindcss/cli/dist/index.mjs','-i','src/styles.css','-o','assets/styles.css','--minify'],{stdio:'inherit'});
+if(result.status!==0)process.exit(result.status||1);
+mkdirSync('_site/src',{recursive:true});
+copyFileSync('index.html','_site/index.html');
+copyFileSync('.nojekyll','_site/.nojekyll');
+cpSync('assets','_site/assets',{recursive:true});
+for(const file of ['app.js','model.js','icons.js'])copyFileSync('src/'+file,'_site/src/'+file);
+console.log('Static demo ready in _site/.');

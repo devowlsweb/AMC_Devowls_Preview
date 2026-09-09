@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#123c36">
+  <meta name="description" content="Demo interactiva de gestión de productos, materias primas y fórmulas de AMC SRL.">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Productos · AMC</title>
+  <link rel="preload" href="./assets/jakarta-latin.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script type="module" src="./src/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Saltar al contenido</a>
+  <aside class="sidebar" aria-label="Navegación principal">
+    <a href="#/productos" class="brand" aria-label="AMC, ir a productos"><span class="brand-symbol">AMC</span><span class="brand-sub">GESTIÓN INTEGRAL</span></a>
+    <div class="workspace"><span class="workspace-avatar">A</span><div><strong>AMC SRL</strong><span>Productos de limpieza</span></div></div>
+    <p class="nav-caption">ESPACIO DE TRABAJO</p>
+    <nav id="navigation"></nav>
+    <div class="sidebar-bottom">
+      <div class="stage-card"><span class="stage-dot"></span><strong>Entrega 01</strong><p>Productos y fórmulas</p><div class="stage-line"><span></span></div><small>Una base para seguir creciendo.</small></div>
+      <button id="reset" class="reset-button" type="button"><span data-icon="reset"></span>Restablecer demo</button>
+      <p class="sidebar-foot">AMC · Prototipo interactivo</p>
+    </div>
+  </aside>
+  <div class="shell">
+    <header class="topbar">
+      <div class="flex items-center gap-2 text-sm text-muted"><span class="hidden sm:inline">Espacio de trabajo</span><span class="hidden sm:inline" aria-hidden="true">/</span><span id="breadcrumb" class="font-semibold text-ink">Productos</span></div>
+      <div class="flex items-center gap-3 sm:gap-5"><span class="demo-badge"><span></span>Demo</span><div class="profile-control"><span class="avatar">AD</span><label class="sr-only" for="profile">Perfil de demostración</label><select id="profile"><option value="admin">Administración</option><option value="viewer">Solo consulta</option></select></div></div>
+    </header>
+    <div id="storage-warning" class="notice warning" role="status" hidden></div>
+    <main id="main" tabindex="-1"></main>
+    <footer class="page-footer"><span>Datos ficticios · Solo para demostración</span><span>AMC SRL <span aria-hidden="true">↗</span></span></footer>
+  </div>
+  <dialog id="modal" aria-labelledby="modal-title"></dialog>
+  <dialog id="confirm" aria-labelledby="confirm-title"><div class="dialog-body"><div class="dialog-heading"><h2 id="confirm-title">¿Descartar los cambios?</h2></div><p id="confirm-message" class="text-muted mt-3"></p><div class="dialog-actions"><button type="button" class="btn secondary" id="confirm-no">Volver</button><button type="button" class="btn primary" id="confirm-yes">Continuar</button></div></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+  <noscript><p>Activá JavaScript en tu navegador para explorar esta demo.</p></noscript>
+</body>
+</html>

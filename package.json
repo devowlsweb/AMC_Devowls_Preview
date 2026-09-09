@@ -1,0 +1,19 @@
+{
+  "name": "amc-demo",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Demo comercial de productos, materias primas y fórmulas para AMC SRL",
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "node --test tests/*.test.mjs"
+  },
+  "devDependencies": {
+    "@fontsource-variable/plus-jakarta-sans": "^5.3.0",
+    "@tailwindcss/cli": "^4.3.3",
+    "jsdom": "^30.0.1",
+    "lucide": "^1.43.0",
+    "tailwindcss": "^4.3.3"
+  }
+}
