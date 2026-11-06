@@ -1,7 +1,7 @@
 # AMC Demo · Sistema de diseño
 
 ## Dirección
-Aplicación administrativa clara, con navegación verde petróleo, superficies claras y un acento lima reservado a la navegación activa y al recorrido de ejemplo. Identidad provisional: AMC en texto, sin inventar el logo del cliente ni adoptar la identidad del presupuesto.
+Aplicación administrativa con navegación azul marino, superficies claras y acentos celestes en la navegación activa y el recorrido de ejemplo. La identidad visual es provisional y usa AMC en texto.
 
 HTML semántico + Tailwind CSS compilado + módulos JavaScript. Sin framework, CDN ni servicios externos durante la presentación. Sin login. Los perfiles son demostrativos y no aportan seguridad real.
 
@@ -13,11 +13,11 @@ Se ejecutó la búsqueda de sistema de diseño. La primera consulta industrial p
 Las búsquedas de stack no produjeron coincidencias verificadas. Se aplicaron las pautas generales de la skill y la documentación oficial de Tailwind. La paleta es una decisión de diseño propia para esta demo, no una recomendación validada para AMC por la base de datos.
 
 ## Tokens
-- Navegación: #123c36.
-- Acción principal: #166553 sobre blanco.
-- Acento: #d4ec80 con texto #163e2f.
-- Fondo: #f5f7f6. Superficie: blanco.
-- Texto: #172f2b. Texto secundario: #62716e.
+- Navegación azul marino `#10274a`.
+- Botón principal azul `#2155a5` con texto blanco.
+- Acento celeste `#c7e5ff` con texto `#123d70`.
+- Fondo `#f3f6fb` y paneles blancos.
+- Texto principal `#152945` y secundario `#50647e`.
 - Tipografía: Plus Jakarta Sans variable, autoalojada; fallback system-ui.
 - Espaciado: múltiplos de 4 px; paneles 20–28 px.
 - Radios: controles 8 px, paneles 12 px, modales 16 px.
@@ -32,9 +32,13 @@ Las búsquedas de stack no produjeron coincidencias verificadas. Se aplicaron la
 - Estados diferenciados por texto, no solamente color.
 - Diálogos nativos, cancelables; advertencia al cerrar formularios modificados.
 - Movimiento discreto y respeto por prefers-reduced-motion.
-- En pantallas pequeñas, navegación horizontal y tablas presentadas como fichas.
+- En pantallas pequeñas, navegación de cuatro accesos y tablas presentadas como fichas.
+- Copiar componentes a una composición vacía crea un borrador editable e independiente del origen.
+- La calculadora muestra las cantidades originales y ajustadas. Cada edición aplica un factor común respecto del origen. El resultado se puede guardar con un producto nuevo.
+- Registrar producción suma la cantidad obtenida al producto seleccionado y descuenta el consumo total por materia prima en una sola escritura local. El consumo se muestra y registra en la unidad del stock, con hasta seis decimales.
+- Las fichas de materias primas enlazan a todas las fórmulas relacionadas, incluidas las de productos inactivos.
 
 ## Alcance
 Catálogo, altas/ediciones/desactivaciones, fórmula completa, materias primas, auditoría local básica y perfiles simulados. Categorías y unidades son catálogos fijos para esta demostración.
 
-No incluir stock, producción, calculadora de lotes, densidades, merma, costos ni versiones formales sin nuevo relevamiento. La composición ficticia no es una receta de fabricación.
+La demo incluye existencias ficticias y una entrada de producción con descuento de materias primas. Lotes, densidades, merma, costos y versiones formales requieren relevamiento. Las composiciones son ilustrativas.

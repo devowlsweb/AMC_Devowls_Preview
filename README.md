@@ -24,6 +24,12 @@ Las pruebas cubren el modelo y el flujo de interfaz mediante DOM simulado. No su
 - Crear y editar productos y materias primas, con códigos únicos por catálogo.
 - Desactivar registros conservando sus relaciones.
 - Crear, editar, validar y consultar fórmulas con cantidades y unidades independientes.
+- Encontrar fórmulas registradas y pendientes desde su propia vista.
+- Copiar componentes, cantidades y unidades de otra fórmula y ajustar el borrador antes de guardar.
+- Ajustar proporcionalmente una fórmula desde **Fórmulas → Calculadora** y guardar la composición con un producto nuevo. Las cantidades recalculadas se redondean a 12 cifras significativas.
+- Registrar producción desde la calculadora. El producto seleccionado recibe la cantidad obtenida y cada materia prima descuenta el consumo de la fórmula ajustada. La vista previa muestra los saldos y bloquea el movimiento si falta stock o hay unidades incompatibles.
+- Consultar existencias en las fichas y en los catálogos. Los insumos tienen stock de ejemplo y su ficha permite ajustar el saldo. Los productos nuevos eligen su unidad de stock al registrar la primera producción.
+- Consultar la ficha de una materia prima y abrir las fórmulas donde se usa.
 - Decimales con coma o punto; errores junto a cada campo.
 - Fecha y responsable local de modificaciones, con actividad reciente.
 - Perfil de consulta y administración simulados.
@@ -34,14 +40,14 @@ Los datos persisten solamente en el navegador y origen usados. No se comparten e
 
 ## Guion para la reunión (5 minutos)
 
-1. Abrir Productos y buscar “multiuso”.
-2. Entrar en Limpiador multiuso y recorrer sus componentes.
-3. Cambiar una cantidad a 0; guardar y mostrar el error.
-4. Corregir a 82,5; guardar y mostrar el responsable y la fecha.
-5. Ir a Materias primas, crear “Componente reunión” con código MP-REUNION y unidad mL.
-6. Volver al producto, agregar el componente, completar su cantidad y guardar.
-7. Cambiar el perfil superior a Solo consulta.
-8. Usar Restablecer demo para repetir la presentación.
+1. Abrir Productos y elegir **Explorar una fórmula** para ver el Limpiador multiuso.
+2. Ir a **Fórmulas → Sin fórmula** y abrir **Jabón líquido**.
+3. Usar **Copiar componentes** y elegir **Detergente concentrado** como origen.
+4. Cambiar la cantidad de **Activo A demo** a 0 y guardar para mostrar la validación.
+5. Corregir a 10,5 y guardar. Revisar el cambio en **Actividad reciente**.
+6. Ir a **Materias primas**, abrir **Activo A demo** y entrar a **Jabón líquido** desde las fórmulas relacionadas.
+7. Cambiar el perfil superior a **Solo consulta** para mostrar la ficha en lectura.
+8. Usar **Restablecer demo** para repetir la presentación.
 
 No interpretar los ejemplos como formulaciones químicas válidas.
 

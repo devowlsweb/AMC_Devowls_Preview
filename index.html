@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#123c36">
+  <meta name="theme-color" content="#10274a">
   <meta name="description" content="Demo interactiva de gestión de productos, materias primas y fórmulas de AMC SRL.">
   <meta name="robots" content="noindex, nofollow">
   <title>Productos · AMC</title>
@@ -15,12 +15,12 @@
   <a class="skip-link" href="#main">Saltar al contenido</a>
   <aside class="sidebar" aria-label="Navegación principal">
     <a href="#/productos" class="brand" aria-label="AMC, ir a productos"><span class="brand-symbol">AMC</span><span class="brand-sub">GESTIÓN INTEGRAL</span></a>
-    <div class="workspace"><span class="workspace-avatar">A</span><div><strong>AMC SRL</strong><span>Productos de limpieza</span></div></div>
+    <div class="workspace"><span class="workspace-avatar" data-icon="layers"></span><div><strong>AMC SRL</strong><span>Productos de limpieza</span></div></div>
     <p class="nav-caption">ESPACIO DE TRABAJO</p>
     <nav id="navigation"></nav>
     <div class="sidebar-bottom">
-      <div class="stage-card"><span class="stage-dot"></span><strong>Entrega 01</strong><p>Productos y fórmulas</p><div class="stage-line"><span></span></div><small>Una base para seguir creciendo.</small></div>
-      <button id="reset" class="reset-button" type="button"><span data-icon="reset"></span>Restablecer demo</button>
+      <div class="stage-card"><span class="stage-dot"></span><strong>Entrega 01</strong><p>Productos y fórmulas</p><small>Entorno de demostración</small></div>
+      <button id="reset" class="reset-button" type="button" data-action="reset-demo"><span data-icon="reset"></span>Restablecer demo</button>
       <p class="sidebar-foot">AMC · Prototipo interactivo</p>
     </div>
   </aside>
@@ -31,7 +31,7 @@
     </header>
     <div id="storage-warning" class="notice warning" role="status" hidden></div>
     <main id="main" tabindex="-1"></main>
-    <footer class="page-footer"><span>Datos ficticios · Solo para demostración</span><span>AMC SRL <span aria-hidden="true">↗</span></span></footer>
+    <footer class="page-footer"><span>Datos ficticios · Guardado en este navegador</span><button class="link-button mobile-reset" type="button" data-action="reset-demo"><span data-icon="reset"></span>Restablecer demo</button><span>AMC SRL</span></footer>
   </div>
   <dialog id="modal" aria-labelledby="modal-title"></dialog>
   <dialog id="confirm" aria-labelledby="confirm-title"><div class="dialog-body"><div class="dialog-heading"><h2 id="confirm-title">¿Descartar los cambios?</h2></div><p id="confirm-message" class="text-muted mt-3"></p><div class="dialog-actions"><button type="button" class="btn secondary" id="confirm-no">Volver</button><button type="button" class="btn primary" id="confirm-yes">Continuar</button></div></div></dialog>

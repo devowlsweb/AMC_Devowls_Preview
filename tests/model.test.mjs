@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {seed,validState,validateFormula,parseQuantity,filterItems,escapeHTML,readState,writeState} from '../src/model.js';
+import {seed,validState,validateFormula,parseQuantity,scaleFormula,planProduction,filterItems,escapeHTML,readState,writeState} from '../src/model.js';
 
 test('seed has valid references and consistent records',()=>{
   const s=seed();assert.ok(validState(s));
@@ -16,6 +16,41 @@ test('formula requires a component, existing reference and valid unit',()=>{
   assert.ok(validateFormula([],seed().materials).length);
   const errs=validateFormula([{materialId:'missing',quantity:1,unit:'ton'}],seed().materials);
   assert.deepEqual(errs.map(x=>x.field),['materialId','unit']);
+});
+test('scaling uses the original reference and preserves the materials and units',()=>{
+  const original=seed().products[1].formula;
+  const doubled=scaleFormula(original,0,'110');
+  assert.deepEqual(doubled.map(r=>r.quantity),[110,25,400]);
+  assert.deepEqual(scaleFormula(original,1,'6,25').map(r=>r.quantity),[27.5,6.25,100]);
+  assert.deepEqual(doubled.map(({materialId,unit})=>[materialId,unit]),[['m8','L'],['m2','kg'],['m7','g']]);
+  assert.equal(original[1].quantity,12.5);
+  assert.equal(scaleFormula(original,0,0),null);
+  assert.equal(scaleFormula(original,3,110),null);
+  assert.equal(scaleFormula(original,1,1e308),null);
+});
+test('production groups repeated materials, converts matching units and checks stock',()=>{
+  const {products,materials}=seed();
+  const rows=[{materialId:'m2',quantity:249.5,unit:'kg'},{materialId:'m2',quantity:500,unit:'g'}];
+  const planned=planProduction(products[1],rows,materials,10.5,'L');
+  assert.equal(planned.quantityError,'');
+  assert.deepEqual(planned.errors,[]);
+  assert.deepEqual(planned.productStock,{quantity:100.5,unit:'L'});
+  assert.deepEqual(planned.consumption.map(({used,remaining})=>[used,remaining]),[[250,0]]);
+  rows[1].quantity=501;
+  assert.match(planProduction(products[1],rows,materials,10.5,'L').errors[0],/stock insuficiente/);
+  rows[1].unit='mL';
+  assert.match(planProduction(products[1],rows,materials,10.5,'L').errors[0],/unidad de la fórmula/);
+  assert.equal(materials[1].stock.quantity,250);
+});
+test('saved catalogs from before stock retain their formulas and receive demo balances',()=>{
+  const old=seed();
+  for(const record of [...old.products,...old.materials])delete record.stock;
+  old.products[0].formula[0].quantity=85;
+  const {state,warning}=readState({getItem:()=>JSON.stringify(old)});
+  assert.equal(warning,'');
+  assert.equal(state.products[0].formula[0].quantity,85);
+  assert.deepEqual(state.products[0].stock,{quantity:120,unit:'L'});
+  assert.deepEqual(state.materials[0].stock,{quantity:1000,unit:'L'});
 });
 test('mixed units remain independent and inactive references remain valid',()=>{
   const s=seed();s.materials[0].active=false;

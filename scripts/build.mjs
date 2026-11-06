@@ -7,7 +7,7 @@ const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 process.chdir(root);
 const require=createRequire(import.meta.url);
 const lucide=require('lucide');
-const aliases={box:'Package',flask:'FlaskConical',layers:'Layers',users:'Users',search:'Search',plus:'Plus',arrow:'ArrowRight',back:'ArrowLeft',chevron:'ChevronRight',check:'Check',clock:'Clock',edit:'Pencil',trash:'Trash2',close:'X',reset:'RotateCcw',shield:'ShieldCheck',info:'Info',save:'Save'};
+const aliases={box:'Package',flask:'FlaskConical',layers:'Layers',users:'Users',search:'Search',plus:'Plus',arrow:'ArrowRight',back:'ArrowLeft',chevron:'ChevronRight',check:'Check',clock:'Clock',edit:'Pencil',trash:'Trash2',close:'X',reset:'RotateCcw',shield:'ShieldCheck',info:'Info',save:'Save',copy:'Copy',list:'ListChecks',calculator:'Calculator'};
 const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;');
 // Official Lucide icon nodes are serialized unchanged. No hand-drawn paths.
 const icons=Object.fromEntries(Object.entries(aliases).map(([alias,name])=>{
